@@ -13,9 +13,6 @@
  * =========================================================================================
  */
 
-import scalariform.formatter.preferences._
-import com.typesafe.sbt.SbtScalariform.ScalariformKeys
-
 val kamonCore         = "io.kamon"               %% "kamon-core"          % "1.1.2"
 val kamonTestKit      = "io.kamon"               %% "kamon-testkit"       % "1.1.2"
 
@@ -24,15 +21,4 @@ lazy val root = (project in file("."))
   .settings(
     libraryDependencies ++=
       compileScope(kamonCore) ++
-      testScope(scalatest, slf4jApi, slf4jnop, kamonCore, kamonTestKit),
-    ScalariformKeys.preferences := formatSettings(ScalariformKeys.preferences.value))
-
-
-def formatSettings(prefs: IFormattingPreferences) = prefs
-  .setPreference(AlignParameters, true)
-  .setPreference(AlignSingleLineCaseStatements, true)
-  .setPreference(AlignSingleLineCaseStatements.MaxArrowIndent, 60)
-  .setPreference(DoubleIndentConstructorArguments, false)
-  .setPreference(DoubleIndentMethodDeclaration, false)
-  .setPreference(DanglingCloseParenthesis, Preserve)
-  .setPreference(NewlineAtEndOfFile, true)
+      testScope(scalatest, slf4jApi, slf4jnop, kamonCore, kamonTestKit))
